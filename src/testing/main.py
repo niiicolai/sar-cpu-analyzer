@@ -70,3 +70,7 @@ def run_test(log_file, test_json_file, output_file=None):
     if output_file:
         with open(output_file, 'w') as file:
             json.dump(results, file, indent=4)
+            
+    all_passed = all([result["passed"] for result in results])
+    
+    return all_passed

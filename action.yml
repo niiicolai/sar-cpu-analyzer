@@ -1,0 +1,33 @@
+name: "SAR CPU Data Analyzer"
+description: "Generate HTML reports or run tests on CPU data from SAR logs."
+author: "Nicolai Berg Andersen"
+inputs:
+  log-file:
+    description: "Path to the SAR log file"
+    required: true
+  html-report:
+    description: "Path for the HTML report output file"
+    required: false
+  test-file:
+    description: "Path to the JSON test specification file"
+    required: false
+  output-file:
+    description: "Path for the JSON test results output file"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - "-i" 
+    - "${{ inputs.log-file }}"
+    - "-r"
+    - "${{ inputs.html-report }}"
+    - "-t"
+    - "${{ inputs.test-file }}"
+    - "-j"
+    - "${{ inputs.output-file }}"
+
+branding:
+  icon: "cpu"
+  color: "blue"
