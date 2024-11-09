@@ -6,7 +6,7 @@
         </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head><body><h2>CPU Usage Report (2024-11-09)</h2><p>Data source: samples/cpu.log</p><p>Number of samples: 15</p>
+    </head><body><h2>CPU Usage Report (2024-11-09)</h2><p>Data source: ./sample/cpu.log</p><p>Number of samples: 15</p>
         <div class="card">
             <div class="card-header" id="heading-1">
                 <h2 class="mb-0">
@@ -195,20 +195,31 @@
         </script>
     
         <div class="card">
-            <div class="card-header" id="heading-3">
+            <div class="card-header" id="heading-4">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU User Over Time
+                        %User
                     </button>
                 </h2>
             </div>
-            <div id="collapse-3" class="collapse">
+            <div id="collapse-4" class="collapse">
                 <div class="card-body">
                     
-        <canvas id="cpuChart2"></canvas>
+        <div class="card">
+            <div class="card-header" id="heading-2">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        Usage Over Time
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-2" class="collapse">
+                <div class="card-body">
+                    
+        <canvas id="cpuChart1"></canvas>
         <script>
-        const ctx2 = document.getElementById('cpuChart2').getContext('2d');
-        const cpuChart2 = new Chart(ctx2, {
+        const ctx1 = document.getElementById('cpuChart1').getContext('2d');
+        const cpuChart1 = new Chart(ctx1, {
             type: 'line',
             data: {
                 labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
@@ -227,6 +238,40 @@
             </div>
         </div>
         <script>
+                document.querySelector('#heading-2 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-2');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+        <div class="card">
+            <div class="card-header" id="heading-3">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        Descriptive Statistics
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-3" class="collapse">
+                <div class="card-body">
+                    
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope='col'>Metric</th><th scope='col'>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>2.45</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>2.1459999999999995</td></tr><tr><th scope='row'>4</th><td>Max</td><td>2.53</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.51</td></tr><tr><th scope='row'>6</th><td>Total</td><td>32.18999999999999</td></tr>
+            </tbody>
+        </table>
+    
+                </div>
+            </div>
+        </div>
+        <script>
                 document.querySelector('#heading-3 button').addEventListener('click', () => {
                     const collapse = document.querySelector('#collapse-3');
                     if (collapse.classList.contains('show')) collapse.classList.remove('show');
@@ -234,21 +279,43 @@
                 });
         </script>
     
+                </div>
+            </div>
+        </div>
+        <script>
+                document.querySelector('#heading-4 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-4');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+        <div class="card">
+            <div class="card-header" id="heading-7">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        %System
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-7" class="collapse">
+                <div class="card-body">
+                    
         <div class="card">
             <div class="card-header" id="heading-5">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU System Over Time
+                        Usage Over Time
                     </button>
                 </h2>
             </div>
             <div id="collapse-5" class="collapse">
                 <div class="card-body">
                     
-        <canvas id="cpuChart4"></canvas>
+        <canvas id="cpuChart2"></canvas>
         <script>
-        const ctx4 = document.getElementById('cpuChart4').getContext('2d');
-        const cpuChart4 = new Chart(ctx4, {
+        const ctx2 = document.getElementById('cpuChart2').getContext('2d');
+        const cpuChart2 = new Chart(ctx2, {
             type: 'line',
             data: {
                 labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
@@ -275,20 +342,76 @@
         </script>
     
         <div class="card">
-            <div class="card-header" id="heading-7">
+            <div class="card-header" id="heading-6">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU IOWait Over Time
+                        Descriptive Statistics
                     </button>
                 </h2>
             </div>
-            <div id="collapse-7" class="collapse">
+            <div id="collapse-6" class="collapse">
                 <div class="card-body">
                     
-        <canvas id="cpuChart6"></canvas>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope='col'>Metric</th><th scope='col'>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>1.47</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>1.1753333333333336</td></tr><tr><th scope='row'>4</th><td>Max</td><td>1.52</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.5</td></tr><tr><th scope='row'>6</th><td>Total</td><td>17.630000000000003</td></tr>
+            </tbody>
+        </table>
+    
+                </div>
+            </div>
+        </div>
         <script>
-        const ctx6 = document.getElementById('cpuChart6').getContext('2d');
-        const cpuChart6 = new Chart(ctx6, {
+                document.querySelector('#heading-6 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-6');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+                </div>
+            </div>
+        </div>
+        <script>
+                document.querySelector('#heading-7 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-7');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+        <div class="card">
+            <div class="card-header" id="heading-10">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        %IOWait
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-10" class="collapse">
+                <div class="card-body">
+                    
+        <div class="card">
+            <div class="card-header" id="heading-8">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        Usage Over Time
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-8" class="collapse">
+                <div class="card-body">
+                    
+        <canvas id="cpuChart3"></canvas>
+        <script>
+        const ctx3 = document.getElementById('cpuChart3').getContext('2d');
+        const cpuChart3 = new Chart(ctx3, {
             type: 'line',
             data: {
                 labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
@@ -307,8 +430,8 @@
             </div>
         </div>
         <script>
-                document.querySelector('#heading-7 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-7');
+                document.querySelector('#heading-8 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-8');
                     if (collapse.classList.contains('show')) collapse.classList.remove('show');
                     else collapse.classList.add('show');
                 });
@@ -318,30 +441,24 @@
             <div class="card-header" id="heading-9">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU Steal Over Time
+                        Descriptive Statistics
                     </button>
                 </h2>
             </div>
             <div id="collapse-9" class="collapse">
                 <div class="card-body">
                     
-        <canvas id="cpuChart8"></canvas>
-        <script>
-        const ctx8 = document.getElementById('cpuChart8').getContext('2d');
-        const cpuChart8 = new Chart(ctx8, {
-            type: 'line',
-            data: {
-                labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
-                datasets: [{
-                    label: '%Steal',
-                    data: [0.0, 0.51, 0.0, 2.0, 3.92, 0.0, 0.0, 0.51, 0.0, 0.0, 0.51, 0.0, 0.0, 0.51, 0.0],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            }
-        });
-        </script>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope='col'>Metric</th><th scope='col'>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>0.0</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>0.33666666666666667</td></tr><tr><th scope='row'>4</th><td>Max</td><td>4.04</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.0</td></tr><tr><th scope='row'>6</th><td>Total</td><td>5.05</td></tr>
+            </tbody>
+        </table>
     
                 </div>
             </div>
@@ -354,27 +471,49 @@
                 });
         </script>
     
+                </div>
+            </div>
+        </div>
+        <script>
+                document.querySelector('#heading-10 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-10');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+        <div class="card">
+            <div class="card-header" id="heading-13">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        %Steal
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-13" class="collapse">
+                <div class="card-body">
+                    
         <div class="card">
             <div class="card-header" id="heading-11">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU Idle Over Time
+                        Usage Over Time
                     </button>
                 </h2>
             </div>
             <div id="collapse-11" class="collapse">
                 <div class="card-body">
                     
-        <canvas id="cpuChart10"></canvas>
+        <canvas id="cpuChart4"></canvas>
         <script>
-        const ctx10 = document.getElementById('cpuChart10').getContext('2d');
-        const cpuChart10 = new Chart(ctx10, {
+        const ctx4 = document.getElementById('cpuChart4').getContext('2d');
+        const cpuChart4 = new Chart(ctx4, {
             type: 'line',
             data: {
                 labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
                 datasets: [{
-                    label: '%Idle',
-                    data: [96.98, 96.97, 95.96, 94.5, 92.16, 95.98, 95.98, 95.96, 96.94, 95.98, 96.46, 95.98, 92.42, 95.96, 98.99],
+                    label: '%Steal',
+                    data: [0.0, 0.51, 0.0, 2.0, 3.92, 0.0, 0.0, 0.51, 0.0, 0.0, 0.51, 0.0, 0.0, 0.51, 0.0],
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
@@ -395,156 +534,14 @@
         </script>
     
         <div class="card">
-            <div class="card-header" id="heading-13">
+            <div class="card-header" id="heading-12">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU Nice Over Time
+                        Descriptive Statistics
                     </button>
                 </h2>
             </div>
-            <div id="collapse-13" class="collapse">
-                <div class="card-body">
-                    
-        <canvas id="cpuChart12"></canvas>
-        <script>
-        const ctx12 = document.getElementById('cpuChart12').getContext('2d');
-        const cpuChart12 = new Chart(ctx12, {
-            type: 'line',
-            data: {
-                labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
-                datasets: [{
-                    label: '%Nice',
-                    data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            }
-        });
-        </script>
-    
-                </div>
-            </div>
-        </div>
-        <script>
-                document.querySelector('#heading-13 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-13');
-                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
-                    else collapse.classList.add('show');
-                });
-        </script>
-    
-        <div class="card">
-            <div class="card-header" id="heading-15">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button">
-                        CPU User Descriptive Statistics
-                    </button>
-                </h2>
-            </div>
-            <div id="collapse-15" class="collapse">
-                <div class="card-body">
-                    
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope='col'>Metric</th><th scope='col'>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>2.45</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>2.1459999999999995</td></tr><tr><th scope='row'>4</th><td>Max</td><td>2.53</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.51</td></tr><tr><th scope='row'>6</th><td>Total</td><td>32.18999999999999</td></tr>
-            </tbody>
-        </table>
-    
-                </div>
-            </div>
-        </div>
-        <script>
-                document.querySelector('#heading-15 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-15');
-                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
-                    else collapse.classList.add('show');
-                });
-        </script>
-    
-        <div class="card">
-            <div class="card-header" id="heading-17">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button">
-                        CPU System Descriptive Statistics
-                    </button>
-                </h2>
-            </div>
-            <div id="collapse-17" class="collapse">
-                <div class="card-body">
-                    
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope='col'>Metric</th><th scope='col'>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>1.47</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>1.1753333333333336</td></tr><tr><th scope='row'>4</th><td>Max</td><td>1.52</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.5</td></tr><tr><th scope='row'>6</th><td>Total</td><td>17.630000000000003</td></tr>
-            </tbody>
-        </table>
-    
-                </div>
-            </div>
-        </div>
-        <script>
-                document.querySelector('#heading-17 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-17');
-                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
-                    else collapse.classList.add('show');
-                });
-        </script>
-    
-        <div class="card">
-            <div class="card-header" id="heading-19">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button">
-                        CPU IOWait Descriptive Statistics
-                    </button>
-                </h2>
-            </div>
-            <div id="collapse-19" class="collapse">
-                <div class="card-body">
-                    
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope='col'>Metric</th><th scope='col'>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>0.0</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>0.33666666666666667</td></tr><tr><th scope='row'>4</th><td>Max</td><td>4.04</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.0</td></tr><tr><th scope='row'>6</th><td>Total</td><td>5.05</td></tr>
-            </tbody>
-        </table>
-    
-                </div>
-            </div>
-        </div>
-        <script>
-                document.querySelector('#heading-19 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-19');
-                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
-                    else collapse.classList.add('show');
-                });
-        </script>
-    
-        <div class="card">
-            <div class="card-header" id="heading-21">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button">
-                        CPU Steal Descriptive Statistics
-                    </button>
-                </h2>
-            </div>
-            <div id="collapse-21" class="collapse">
+            <div id="collapse-12" class="collapse">
                 <div class="card-body">
                     
         <table class="table table-bordered">
@@ -563,22 +560,84 @@
             </div>
         </div>
         <script>
-                document.querySelector('#heading-21 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-21');
+                document.querySelector('#heading-12 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-12');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+                </div>
+            </div>
+        </div>
+        <script>
+                document.querySelector('#heading-13 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-13');
                     if (collapse.classList.contains('show')) collapse.classList.remove('show');
                     else collapse.classList.add('show');
                 });
         </script>
     
         <div class="card">
-            <div class="card-header" id="heading-23">
+            <div class="card-header" id="heading-16">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button">
-                        CPU Idle Descriptive Statistics
+                        %Idle
                     </button>
                 </h2>
             </div>
-            <div id="collapse-23" class="collapse">
+            <div id="collapse-16" class="collapse">
+                <div class="card-body">
+                    
+        <div class="card">
+            <div class="card-header" id="heading-14">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        Usage Over Time
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-14" class="collapse">
+                <div class="card-body">
+                    
+        <canvas id="cpuChart5"></canvas>
+        <script>
+        const ctx5 = document.getElementById('cpuChart5').getContext('2d');
+        const cpuChart5 = new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: ['00:33:55', '00:33:57', '00:33:59', '00:34:01', '00:34:03', '00:34:05', '00:34:07', '00:34:09', '00:34:11', '00:34:13', '00:34:15', '00:34:17', '00:34:19', '00:34:21', '00:34:23'],
+                datasets: [{
+                    label: '%Idle',
+                    data: [96.98, 96.97, 95.96, 94.5, 92.16, 95.98, 95.98, 95.96, 96.94, 95.98, 96.46, 95.98, 92.42, 95.96, 98.99],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+        </script>
+    
+                </div>
+            </div>
+        </div>
+        <script>
+                document.querySelector('#heading-14 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-14');
+                    if (collapse.classList.contains('show')) collapse.classList.remove('show');
+                    else collapse.classList.add('show');
+                });
+        </script>
+    
+        <div class="card">
+            <div class="card-header" id="heading-15">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button">
+                        Descriptive Statistics
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse-15" class="collapse">
                 <div class="card-body">
                     
         <table class="table table-bordered">
@@ -597,44 +656,21 @@
             </div>
         </div>
         <script>
-                document.querySelector('#heading-23 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-23');
+                document.querySelector('#heading-15 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-15');
                     if (collapse.classList.contains('show')) collapse.classList.remove('show');
                     else collapse.classList.add('show');
                 });
         </script>
-    
-        <div class="card">
-            <div class="card-header" id="heading-25">
-                <h2 class="mb-0">
-                    <button class="btn btn-link" type="button">
-                        CPU Nice Descriptive Statistics
-                    </button>
-                </h2>
-            </div>
-            <div id="collapse-25" class="collapse">
-                <div class="card-body">
-                    
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope='col'>Metric</th><th scope='col'>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><th scope='row'>1</th><td>Count</td><td>15</td></tr><tr><th scope='row'>2</th><td>Median</td><td>0.0</td></tr><tr><th scope='row'>3</th><td>Mean</td><td>0.0</td></tr><tr><th scope='row'>4</th><td>Max</td><td>0.0</td></tr><tr><th scope='row'>5</th><td>Min</td><td>0.0</td></tr><tr><th scope='row'>6</th><td>Total</td><td>0.0</td></tr>
-            </tbody>
-        </table>
     
                 </div>
             </div>
         </div>
         <script>
-                document.querySelector('#heading-25 button').addEventListener('click', () => {
-                    const collapse = document.querySelector('#collapse-25');
+                document.querySelector('#heading-16 button').addEventListener('click', () => {
+                    const collapse = document.querySelector('#collapse-16');
                     if (collapse.classList.contains('show')) collapse.classList.remove('show');
                     else collapse.classList.add('show');
                 });
         </script>
-    <p>Generated with <a href='https://github.com/niiicolai/sar-cpu-analyzer'>niiicolai/sar-cpu-analyzer</a></p></body></html>
+    <p>Generated with <a href='https://github.com/niiicolai/sar-cpu-data-analyzer'>niiicolai/sar-cpu-data-analyzer</a></p></body></html>

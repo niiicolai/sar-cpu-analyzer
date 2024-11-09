@@ -26,7 +26,7 @@ def parse_sar_log(log_file):
                 }
                 data.append(parsed_data)
             except ValueError:
-                print(f"Skipping line with invalid data: {line.strip()}")
+                pass
     
     df = pd.DataFrame(data)
     return df

@@ -1,2 +1,5 @@
 venv/
-samples/
+__pycache__/
+report.html
+test-result.json
+tests-results.json
