@@ -43,7 +43,30 @@ def generate_html_report(output, log_file):
                     ["Mean", df["%User"].mean()],
                     ["Max", df["%User"].max()],
                     ["Min", df["%User"].min()],
-                    ["Total", df["%User"].sum()],
+                    ["Sum", df["%User"].sum()],
+                ]
+            )
+        )
+    )
+    
+    body += generate_collapse_div(
+        "%Nice",
+        generate_collapse_div(
+            "Usage Over Time",
+            generate_line_chart(df["Time"].tolist(), df["%Nice"].tolist(), "%Nice")
+        )
+        +
+        generate_collapse_div(
+            "Descriptive Statistics",
+            generate_table(
+                ["Metric", "Value"],
+                [
+                    ["Count", df["%Nice"].count()],
+                    ["Median", df["%Nice"].median()],
+                    ["Mean", df["%Nice"].mean()],
+                    ["Max", df["%Nice"].max()],
+                    ["Min", df["%Nice"].min()],
+                    ["Sum", df["%Nice"].sum()],
                 ]
             )
         )
@@ -66,7 +89,7 @@ def generate_html_report(output, log_file):
                     ["Mean", df["%System"].mean()],
                     ["Max", df["%System"].max()],
                     ["Min", df["%System"].min()],
-                    ["Total", df["%System"].sum()],
+                    ["Sum", df["%System"].sum()],
                 ]
             )
         )
@@ -89,7 +112,7 @@ def generate_html_report(output, log_file):
                     ["Mean", df["%IOWait"].mean()],
                     ["Max", df["%IOWait"].max()],
                     ["Min", df["%IOWait"].min()],
-                    ["Total", df["%IOWait"].sum()],
+                    ["Sum", df["%IOWait"].sum()],
                 ]
             )
         )
@@ -112,7 +135,7 @@ def generate_html_report(output, log_file):
                     ["Mean", df["%Steal"].mean()],
                     ["Max", df["%Steal"].max()],
                     ["Min", df["%Steal"].min()],
-                    ["Total", df["%Steal"].sum()],
+                    ["Sum", df["%Steal"].sum()],
                 ]
             )
         )
@@ -135,7 +158,7 @@ def generate_html_report(output, log_file):
                     ["Mean", df["%Idle"].mean()],
                     ["Max", df["%Idle"].max()],
                     ["Min", df["%Idle"].min()],
-                    ["Total", df["%Idle"].sum()],
+                    ["Sum", df["%Idle"].sum()],
                 ]
             )
         )

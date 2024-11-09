@@ -17,37 +17,8 @@ def run_test(log_file, test_json_file, output_file=None):
     if not isinstance(tests, dict):
         raise ValueError("Invalid tests; Must be a dictionary")
     
-    """
-        * The 1. key in the JSON file is the name of the test.
-        * The 2. key in the JSON file is the column name in the DataFrame.
-        * The 3. key in the JSON file is the statistical function to apply.
-        * The 4. key in the JSON file is the comparison operator.
-    
-        {
-            "User mean must be less than 1": { 
-                "user": { "mean": { "<": 1 } }
-            },
-            "Nice median must be greater than 1": { 
-                "nice": { "median": { ">": 1 } }
-            },
-            "System max must equal 1": { 
-                "system": { "max": { "=": 1 } }
-            },
-            "iowait mean must be greater than or equal to 1": { 
-                "iowait": { "mean": { ">=": 1 } }
-            },
-            "steal min must be less than or equal to 1": { 
-                "steal": { "min": { "<=": 1 } }
-            },
-            "idle sum must not equal 1": {
-                "idle": { "sum": { "!=": 1 } }
-            }
-        }
-    """
-    
     results = []
     
-    # Iterate over each test
     for test_name, test in tests.items():
         column_name = get_column_name(test, test_name)
         function_name = get_function_name(test, column_name, test_name)
