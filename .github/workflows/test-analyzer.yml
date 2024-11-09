@@ -21,3 +21,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results
+          path: test-results.json
+          if-no-files-found: error
+      
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: test-report.html
+          if-no-files-found: error
