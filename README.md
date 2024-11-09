@@ -1,3 +1,5 @@
+[![Test SAR CPU Data Analyzer Action](https://github.com/niiicolai/sar-cpu-data-analyzer/actions/workflows/test-analyzer.yml/badge.svg)](https://github.com/niiicolai/sar-cpu-data-analyzer/actions/workflows/test-analyzer.yml)
+
 # SAR CPU Data Analyzer
 A python project that can be used to analyze, test and visualize the CPU data from the SAR command. The project can also be used to run automated tests on the CPU data using GitHub Actions.
 
