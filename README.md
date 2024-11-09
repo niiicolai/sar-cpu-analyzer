@@ -1,5 +1,5 @@
 # SAR CPU Data Analyzer
-A python project that can be used to analyze, test and visualize the CPU data from the SAR command.
+A python project that can be used to analyze, test and visualize the CPU data from the SAR command. The project can also be used to run automated tests on the CPU data using GitHub Actions.
 
 ## Setup
 ```bash
@@ -104,6 +104,43 @@ python main.py -i <input_file> -t <tests_file> -j <output_result_file> -r <outpu
 
 # Run the tests and generate the report
 python main.py -i ./sample/cpu.log -t ./sample/sample-test.json -j ./tests-results.json -r ./report.html
+```
+
+## GitHub Actions
+To use the analyzer in a GitHub Actions workflow, see the example below.
+```yaml
+name: "Test SAR CPU Data Analyzer Action"
+
+on: [push, pull_request]
+
+jobs:
+  test-analyzer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run SAR CPU Data Analyzer
+        uses: niiicolai/sar-cpu-data-analyzer@v1
+        with:
+          log-file: "./sample/cpu.log"
+          test-file: "./sample/sample-test.json"
+          output-file: "./test-results.json" 
+          html-report: "./test-report.html"
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results.json
+          if-no-files-found: error
+      
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: test-report.html
+          if-no-files-found: error
 ```
 
 ## Contributing
