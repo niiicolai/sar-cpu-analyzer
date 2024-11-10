@@ -9,23 +9,15 @@ if __name__ == '__main__':
     parser.add_argument('-r', type=str, required=False, help="Path for the HTML report output file")
     parser.add_argument('-t', type=str, required=False, help="Path to the JSON test specification file")
     parser.add_argument('-j', type=str, required=False, help="Path for the JSON test results output file")
+    parser.add_argument('--ignore-end-lines', type=int, required=False, help="Specify a number of lines to ignore at the end of the log file")
     args = parser.parse_args()
     
     if args.r:
         generate_html_report(args.r, args.i)
         print(f"HTML report generated: {args.r}")
         
-    if args.t and not args.j:
-        print("Error: -t (test file) provided without -j (output file)")
-        sys.exit(1)
-        
-    if args.j and not args.t:
-        print("Error: -j (output file) provided without -t (test file)")
-        sys.exit(1)
-        
-    if args.t and args.j:
-        if run_test(args.i, args.t, args.j):
-            print(f"Test results saved to: {args.j}")
+    if args.i and args.t:
+        if run_test(args.i, args.t, args.j, args.ignore_end_lines):                        
             sys.exit(0)
         else:
             print("Error: Test failed")

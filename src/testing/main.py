@@ -7,7 +7,12 @@ from src.testing.get_result import get_result
 from src.testing.get_passed import get_passed
 import json
 
-def run_test(log_file, test_json_file, output_file=None):
+GREEN = "\033[92m"
+RED = "\033[91m"
+RESET = "\033[0m"
+CYAN = "\033[96m"
+
+def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
     df = parse_sar_log(log_file)
     
     with open(test_json_file, 'r') as file:
@@ -16,6 +21,10 @@ def run_test(log_file, test_json_file, output_file=None):
     # Check if the tests is a dictionary
     if not isinstance(tests, dict):
         raise ValueError("Invalid tests; Must be a dictionary")
+    
+    # Ensure ignore_end_lines is an integer
+    if not isinstance(ignore_end_lines, int):
+        raise ValueError("Invalid ignore_end_lines; Must be an integer")
     
     results = []
     
@@ -35,13 +44,44 @@ def run_test(log_file, test_json_file, output_file=None):
             "expected_value": expected_value
         })
         
+    # Ignore the last n lines of the log file
+    if ignore_end_lines:
+        # ensure ignore_end_lines is less than the number of lines in the log file
+        if ignore_end_lines >= len(df):
+            raise ValueError("Invalid ignore_end_lines; Must be less than the number of lines in the log file")
+        df = df.iloc[:-ignore_end_lines]
+
+    # Print title
+    print(f"\n{'='*30}")
+    print(f"{'SAR Log Testing Results':^30}")
+    print(f"{'='*30}")
+
+    # Print the results of each test
     for result in results:
-        print(f"{result['test_name']}: {result['passed']} (Result: {result['result']}, Operator: {result['operator']}, Expected Value: {result['expected_value']})")
+        print(f"\nTest Name: {result['test_name']}")
+        print(f"Result: {result['result']}")
+        print(f"Operator: {result['operator']}")
+        print(f"Expected: {result['expected_value']}")
+        print(f"Condition: {result['result']} {result['operator']} {result['expected_value']};")
+        print(f"Passed: {f'{GREEN}True{RESET}' if result['passed'] else f'{RED}False{RESET}'}")
+    
+    total_passed = sum([result["passed"] for result in results])
+    total_failed = len(results) - total_passed
+    total_tests = len(results)
+    all_passed = all([result["passed"] for result in results])
+    
+    # Print the summary as shown above
+    print(f"\n| Total Passed | Total Failed | Total Tests |")
+    print(f"|--------------|--------------|-------------|")
+    print(f"| {GREEN}{total_passed}{RESET}            | {RED}{total_failed}{RESET}            | {CYAN}{total_tests}{RESET}           |")
+    print(f"|--------------|--------------|-------------|")
+    
+    print(f"\n{f'{GREEN}Test Passed{RESET}' if all_passed else f'{RED}Test Failed{RESET}'}\n")
+
     
     if output_file:
         with open(output_file, 'w') as file:
             json.dump(results, file, indent=4)
-            
-    all_passed = all([result["passed"] for result in results])
+        print(f"Test results saved to: {output_file}")
     
     return all_passed
