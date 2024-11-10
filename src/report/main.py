@@ -4,8 +4,8 @@ from src.report.generate_line_chart import generate_line_chart
 from src.report.generate_table import generate_table
 from src.parser.parse_sar_log import parse_sar_log
 
-def generate_html_report(output, log_file):
-    df = parse_sar_log(log_file)
+def generate_html_report(output, log_file, ignore_end_lines=0):
+    df = parse_sar_log(log_file, ignore_end_lines)
     
     style = """
         <style>

@@ -13,7 +13,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     if args.r:
-        generate_html_report(args.r, args.i)
+        generate_html_report(args.r, args.i, args.ignore_end_lines)
         print(f"HTML report generated: {args.r}")
         
     if args.i and args.t:

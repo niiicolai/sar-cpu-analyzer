@@ -13,7 +13,7 @@ RESET = "\033[0m"
 CYAN = "\033[96m"
 
 def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
-    df = parse_sar_log(log_file)
+    df = parse_sar_log(log_file, ignore_end_lines)
     
     with open(test_json_file, 'r') as file:
         tests = json.load(file)
@@ -21,15 +21,6 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
     # Check if the tests is a dictionary
     if not isinstance(tests, dict):
         raise ValueError("Invalid tests; Must be a dictionary")
-    
-    if ignore_end_lines:
-        # Ensure ignore_end_lines is an integer
-        if not isinstance(ignore_end_lines, int):
-            raise ValueError("Invalid ignore_end_lines; Must be an integer")
-        # ensure ignore_end_lines is less than the number of lines in the log file
-        if ignore_end_lines >= len(df):
-            raise ValueError("Invalid ignore_end_lines; Must be less than the number of lines in the log file")
-        df = df.iloc[:-ignore_end_lines]
     
     results = []
     
