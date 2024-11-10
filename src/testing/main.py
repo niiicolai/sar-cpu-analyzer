@@ -22,10 +22,14 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
     if not isinstance(tests, dict):
         raise ValueError("Invalid tests; Must be a dictionary")
     
-    # Ensure ignore_end_lines is an integer
     if ignore_end_lines:
+        # Ensure ignore_end_lines is an integer
         if not isinstance(ignore_end_lines, int):
             raise ValueError("Invalid ignore_end_lines; Must be an integer")
+        # ensure ignore_end_lines is less than the number of lines in the log file
+        if ignore_end_lines >= len(df):
+            raise ValueError("Invalid ignore_end_lines; Must be less than the number of lines in the log file")
+        df = df.iloc[:-ignore_end_lines]
     
     results = []
     
@@ -44,13 +48,6 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
             "operator": operator,
             "expected_value": expected_value
         })
-        
-    # Ignore the last n lines of the log file
-    if ignore_end_lines:
-        # ensure ignore_end_lines is less than the number of lines in the log file
-        if ignore_end_lines >= len(df):
-            raise ValueError("Invalid ignore_end_lines; Must be less than the number of lines in the log file")
-        df = df.iloc[:-ignore_end_lines]
 
     # Print title
     print(f"\n{'='*30}")
