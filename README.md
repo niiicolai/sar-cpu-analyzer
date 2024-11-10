@@ -69,15 +69,72 @@ python main.py -i <input_file> -t <tests_file> -j <output_result_file>
 
 # Run the tests
 python main.py -i ./sample/cpu.log -t ./sample/sample-test.json -j ./tests-results.json
+```
 
-# Terminal output:
-# User mean must be less than 1: False (Result: 2.1459999999999995, Operator: <, Expected Value: 1)
-# Nice median must be greater than 1: False (Result: 0.0, Operator: >, Expected Value: 1)
-# System max must equal 1: False (Result: 1.52, Operator: =, Expected Value: 1)
-# iowait mean must be greater than or equal to 1: False (Result: 0.33666666666666667, Operator: >=, Expected Value: 1)
-# steal min must be less than or equal to 1: True (Result: 0.0, Operator: <=, Expected Value: 1)
-# idle sum must not equal 1: True (Result: 1437.2200000000003, Operator: !=, Expected Value: 1)
-# Test results saved to: ./tests-results.json
+Terminal output:
+```txt
+==============================
+   SAR Log Testing Results
+==============================
+
+
+Test Name: User mean must be less than 7
+Result: 6.659705882352942
+Operator: <
+Expected: 7
+Condition: 6.659705882352942 < 7;
+Passed: True
+
+
+Test Name: Nice median must equal 1
+Result: 0.0
+Operator: =
+Expected: 0
+Condition: 0.0 = 0;
+Passed: True
+
+
+Test Name: System max must be greater than 1
+Result: 8.0
+Operator: >
+Expected: 1
+Condition: 8.0 > 1;
+Passed: True
+
+
+Test Name: iowait mean must be greater than or equal to 0.1
+Result: 0.20294117647058824
+Operator: >=
+Expected: 0.1
+Condition: 0.20294117647058824 >= 0.1;
+Passed: True
+
+
+Test Name: steal min must be less than or equal to 0
+Result: 0.0
+Operator: <=
+Expected: 0
+Condition: 0.0 <= 0;
+Passed: True
+
+
+Test Name: idle sum must not equal 1
+Result: 3022.7099999999996
+Operator: !=
+Expected: 1
+Condition: 3022.7099999999996 != 1;
+Passed: True
+
+
+| Total Passed | Total Failed | Total Tests |
+|--------------|--------------|-------------|
+| 6            | 0            | 6           |
+|--------------|--------------|-------------|
+
+Test Passed
+
+Test results saved to: ./tests-results.json
+
 ```
 
 ## Generate HTML Report
