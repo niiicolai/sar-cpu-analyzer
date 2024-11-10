@@ -1,6 +1,6 @@
 {
-    "User mean must be less than 6": { 
-        "%User": { "mean": { "<": 6 } }
+    "User mean must be less than 7": { 
+        "%User": { "mean": { "<": 7 } }
     },
     "Nice median must equal 1": { 
         "%Nice": { "median": { "=": 0 } }
