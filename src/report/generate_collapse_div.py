@@ -5,6 +5,15 @@ def generate_collapse_div(title, html):
     global id
     id = id + 1
     
+    if title is None:
+        raise ValueError("generate_collapse_div: Title cannot be None")
+    if html is None:
+        raise ValueError("generate_collapse_div: HTML cannot be None")
+    if not isinstance(title, str):
+        raise ValueError("generate_collapse_div: Title must be a string")
+    if not isinstance(html, str):
+        raise ValueError("generate_collapse_div: HTML must be a string")    
+    
     return f"""
         <div class="card">
             <div class="card-header" id="heading-{id}">
