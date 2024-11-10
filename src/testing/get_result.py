@@ -1,21 +1,17 @@
 import pandas as pd
 
 def get_result(df, column_name, function_name, test_name):
-    # Check if df is a DataFrame
-    if not isinstance(df, pd.DataFrame):
-        raise ValueError(f"Invalid DataFrame: {df}; df must be a pandas DataFrame")
+    if df is None: raise ValueError(f"Invalid DataFrame: {df}; df must be a pandas DataFrame")
+    if not isinstance(df, pd.DataFrame): raise ValueError(f"Invalid DataFrame: {df}; df must be a pandas DataFrame")
     
-    # Check if column_name is a string
-    if not isinstance(column_name, str):
-        raise ValueError(f"Invalid column name: {column_name}; column_name must be a string")
+    if column_name is None: raise ValueError(f"Invalid column name: {column_name}; column_name must be a string")
+    if not isinstance(column_name, str): raise ValueError(f"Invalid column name: {column_name}; column_name must be a string")
     
-    # Check if function_name is a string
-    if not isinstance(function_name, str):
-        raise ValueError(f"Invalid function name: {function_name}; function_name must be a string")
+    if function_name is None: raise ValueError(f"Invalid function name: {function_name}; function_name must be a string")
+    if not isinstance(function_name, str): raise ValueError(f"Invalid function name: {function_name}; function_name must be a string")
     
-    # Check if test_name is a string
-    if not isinstance(test_name, str):
-        raise ValueError(f"Invalid test name: {test_name}; test_name must be a string")
+    if test_name is None: raise ValueError(f"Invalid test name: {test_name}; test_name must be a string")
+    if not isinstance(test_name, str): raise ValueError(f"Invalid test name: {test_name}; test_name must be a string")
     
     if function_name == "count":
         return df[column_name].count()

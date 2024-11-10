@@ -1,10 +1,7 @@
 from src.parser.parse_sar_log import parse_sar_log
-from src.testing.get_column_name import get_column_name
-from src.testing.get_function_name import get_function_name
-from src.testing.get_operator import get_operator
-from src.testing.get_expected_value import get_expected_value
 from src.testing.get_result import get_result
 from src.testing.get_passed import get_passed
+from src.testing.parse_test import parse_test
 import json
 
 GREEN = "\033[92m"
@@ -25,10 +22,10 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
     results = []
     
     for test_name, test in tests.items():
-        column_name = get_column_name(test, test_name)
-        function_name = get_function_name(test, column_name, test_name)
-        operator = get_operator(test, column_name, function_name, test_name)
-        expected_value = get_expected_value(test, column_name, function_name, operator, test_name)
+        if test_name is None: raise ValueError(f"Invalid test: {test_name}; test_name must be a string")
+        if not isinstance(test, dict): raise ValueError(f"Invalid test: {test_name}; test must be a dictionary")
+        
+        column_name, function_name, operator, expected_value = parse_test(test)
         result = get_result(df, column_name, function_name, test_name)
         passed = get_passed(operator, result, expected_value)
         
