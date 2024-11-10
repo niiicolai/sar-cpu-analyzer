@@ -5,14 +5,10 @@ def parse_sar_log(log_file):
     with open(log_file, 'r') as file:
         lines = file.readlines()
         for line in lines:
-            # Ignore header and system info lines
-            if line.startswith("Linux") or line.startswith("00:") is False:
-                continue
             fields = line.split()
             if len(fields) != 8:
                 continue
             time, cpu, user, nice, system, iowait, steal, idle = fields
-            
             try:
                 parsed_data = {
                     "Time": time,
@@ -27,6 +23,9 @@ def parse_sar_log(log_file):
                 data.append(parsed_data)
             except ValueError:
                 pass
+    
+    if len(data) == 0:
+        raise ValueError(f"Empty log file: {log_file}")        
     
     df = pd.DataFrame(data)
     return df
