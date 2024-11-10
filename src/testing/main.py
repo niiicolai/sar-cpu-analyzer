@@ -23,8 +23,9 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
         raise ValueError("Invalid tests; Must be a dictionary")
     
     # Ensure ignore_end_lines is an integer
-    if not isinstance(ignore_end_lines, int):
-        raise ValueError("Invalid ignore_end_lines; Must be an integer")
+    if ignore_end_lines:
+        if not isinstance(ignore_end_lines, int):
+            raise ValueError("Invalid ignore_end_lines; Must be an integer")
     
     results = []
     
