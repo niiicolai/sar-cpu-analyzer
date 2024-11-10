@@ -59,7 +59,7 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
 
     # Print the results of each test
     for result in results:
-        print(f"\nTest Name: {result['test_name']}")
+        print(f"\n\nTest Name: {result['test_name']}")
         print(f"Result: {result['result']}")
         print(f"Operator: {result['operator']}")
         print(f"Expected: {result['expected_value']}")
@@ -72,7 +72,7 @@ def run_test(log_file, test_json_file, output_file=None, ignore_end_lines=0):
     all_passed = all([result["passed"] for result in results])
     
     # Print the summary as shown above
-    print(f"\n| Total Passed | Total Failed | Total Tests |")
+    print(f"\n\n| Total Passed | Total Failed | Total Tests |")
     print(f"|--------------|--------------|-------------|")
     print(f"| {GREEN}{total_passed}{RESET}            | {RED}{total_failed}{RESET}            | {CYAN}{total_tests}{RESET}           |")
     print(f"|--------------|--------------|-------------|")
